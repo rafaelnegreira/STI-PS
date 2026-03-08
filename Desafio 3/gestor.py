@@ -22,14 +22,13 @@ class GestorAcademico:
                     nota_valor = int(linha['NOTA'])
                     carga_horaria = int(linha['CARGA_HORARIA'])
                     ano_semestre = int(linha['ANO_SEMESTRE'])
-
+                
                     if cod_disciplina not in self.disciplinas:
                         self.disciplinas[cod_disciplina] = Disciplina(cod_disciplina, carga_horaria)
                     disciplina = self.disciplinas[cod_disciplina]
 
                     if matricula not in self.alunos:
                         self.alunos[matricula] = Aluno(matricula)
-
                     aluno = self.alunos[matricula]
 
                     if cod_curso not in self.cursos:
@@ -43,12 +42,22 @@ class GestorAcademico:
                     if aluno not in curso.alunos:
                         curso.alunos.append(aluno)
                         
-            print("\n\nDados carregados com sucesso!")
+            print("\nDados carregados!\n")
 
         except FileNotFoundError:
             print(f"Erro: Arquivo {caminho_arquivo} não encontrado")
 
     def mostrar_alunos(self):
         print(self.alunos.keys())
+    
+    def mostrar_cursos(self):
         print(self.cursos.keys())
+
+    def mostrar_disciplinas(self):
         print(self.disciplinas.keys())
+
+    def cr_alunos(self):
+        print("Matrícula      CR")
+        for matricula in sorted(self.alunos):
+            print(f"   {matricula}    -    {self.alunos[matricula].calcularCR()}")
+            

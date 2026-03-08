@@ -3,5 +3,5 @@ class Aluno:
         self.matricula = matricula
         self.notas = []
         
-    def calcularCR():
-        pass
+    def calcularCR(self):
+        return 10
