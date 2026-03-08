@@ -1,7 +1,7 @@
 class Curso:
-    def __init__(self, codCurso, alunos):
+    def __init__(self, codCurso):
         self.codCurso = codCurso
-        self.alunos = alunos
+        self.alunos = []
         
     def getMediaCR():
         pass

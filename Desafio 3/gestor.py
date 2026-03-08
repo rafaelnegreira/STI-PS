@@ -1,5 +1,54 @@
+import csv
+from aluno import Aluno
+from disciplina import Disciplina
+from curso import Curso
+from nota import Nota
+
 class GestorAcademico:
-    def __int__(self, mapaAlunos, mapaCursos, mapaDisciplinas):
-        self.mapaAlunos = mapaAlunos
-        self.mapaCursos = mapaCursos
-        self.mapaDisciplinas = mapaDisciplinas
+    def __init__(self):
+        self.alunos = {}
+        self.disciplinas = {}
+        self.cursos = {}
+
+    def carregar_dados(self, caminho_arquivo):
+        try:
+            with open(caminho_arquivo, mode='r') as arquivo:
+                leitor = csv.DictReader(arquivo)
+                for linha in leitor:
+
+                    matricula = int(linha['MATRICULA'])
+                    cod_disciplina = linha['COD_DISCIPLINA']
+                    cod_curso = int(linha['COD_CURSO'])
+                    nota_valor = int(linha['NOTA'])
+                    carga_horaria = int(linha['CARGA_HORARIA'])
+                    ano_semestre = int(linha['ANO_SEMESTRE'])
+
+                    if cod_disciplina not in self.disciplinas:
+                        self.disciplinas[cod_disciplina] = Disciplina(cod_disciplina, carga_horaria)
+                    disciplina = self.disciplinas[cod_disciplina]
+
+                    if matricula not in self.alunos:
+                        self.alunos[matricula] = Aluno(matricula)
+
+                    aluno = self.alunos[matricula]
+
+                    if cod_curso not in self.cursos:
+                        self.cursos[cod_curso] = Curso(cod_curso)
+                    curso = self.cursos[cod_curso]
+
+                    nova_nota = Nota(disciplina, nota_valor, cod_curso, ano_semestre)
+                    aluno.notas.append(nova_nota)
+
+                    # Vincular Aluno ao Curso (Evitando duplicatas na lista do curso)
+                    if aluno not in curso.alunos:
+                        curso.alunos.append(aluno)
+                        
+            print("\n\nDados carregados com sucesso!")
+
+        except FileNotFoundError:
+            print(f"Erro: Arquivo {caminho_arquivo} não encontrado")
+
+    def mostrar_alunos(self):
+        print(self.alunos.keys())
+        print(self.cursos.keys())
+        print(self.disciplinas.keys())
