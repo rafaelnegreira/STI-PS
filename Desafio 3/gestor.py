@@ -35,7 +35,7 @@ class GestorAcademico:
                         self.cursos[cod_curso] = Curso(cod_curso)
                     curso = self.cursos[cod_curso]
 
-                    nova_nota = Nota(disciplina, nota_valor, cod_curso, ano_semestre)
+                    nova_nota = Nota(nota_valor, ano_semestre, cod_curso, disciplina)
                     aluno.notas.append(nova_nota)
 
                     # Vincular Aluno ao Curso (Evitando duplicatas na lista do curso)
@@ -57,7 +57,7 @@ class GestorAcademico:
         print(self.disciplinas.keys())
 
     def cr_alunos(self):
-        print("Matrícula      CR")
+        print("Matrícula        CR")
         for matricula in sorted(self.alunos):
             print(f"   {matricula}    -    {self.alunos[matricula].calcularCR()}")
             
