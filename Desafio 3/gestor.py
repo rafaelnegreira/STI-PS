@@ -69,3 +69,14 @@ class GestorAcademico:
         for cod_curso in sorted(self.cursos):
             media = self.cursos[cod_curso].getMediaCR()
             print(f"   {cod_curso}    -    {media}") 
+        
+    def media_disciplinas(self):
+        print("\n      Médias por Disciplina e Semestre\n")
+        print(f"Disciplina     Semestre     Média")
+        for cod in sorted(self.disciplinas.keys()):
+            disciplina = self.disciplinas[cod]
+            medias = disciplina.getMediaPorSemestre()
+            
+            if medias:
+                for semestre in sorted(medias.keys()):
+                    print(f" {cod}   |   {semestre}   |   {medias[semestre]}")

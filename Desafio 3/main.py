@@ -8,6 +8,4 @@ gestor_academico.cr_alunos()
 
 gestor_academico.media_cursos()
 
-# gestor_academico.mostrar_alunos()
-# gestor_academico.mostrar_cursos()
-# gestor_academico.mostrar_disciplinas()
+gestor_academico.media_disciplinas()
