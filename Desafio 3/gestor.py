@@ -57,7 +57,14 @@ class GestorAcademico:
         print(self.disciplinas.keys())
 
     def cr_alunos(self):
+        print("\n     CR dos alunos\n")
         print("Matrícula        CR")
         for matricula in sorted(self.alunos):
             print(f"   {matricula}    -    {self.alunos[matricula].calcularCR()}")
-            
+    
+    def media_cursos(self):
+        print("\nMédia de CR dos cursos\n")
+        print(" Curso         CR")
+        for cod_curso in sorted(self.cursos):
+            media = self.cursos[cod_curso].getMediaCR()
+            print(f"   {cod_curso}    -    {media}") 
