@@ -37,6 +37,7 @@ class GestorAcademico:
 
                     nova_nota = Nota(nota_valor, ano_semestre, cod_curso, disciplina)
                     aluno.notas.append(nova_nota)
+                    disciplina.notas.append(nova_nota)
 
                     # Vincular Aluno ao Curso (Evitando duplicatas na lista do curso)
                     if aluno not in curso.alunos:
