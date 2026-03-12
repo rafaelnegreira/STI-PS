@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Saída</title>
+    <style>
+        table { border-collapse: collapse; width: 50%; margin-bottom: 20px; }
+        th, td { border: 2px solid black; padding: 8px; text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>Relatório</h1>
+
+    <h2>CR dos Alunos</h2>
+    <table>
+        <tr><th>Matrícula</th><th>CR</th></tr>
+        {% for aluno in alunos %}
+        <tr>
+            <td>{{ aluno.matricula }}</td>
+            <td>{{ aluno.calcularCR() }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Média dos Cursos</h2>
+    <table>
+        <tr><th>Curso</th><th>Média Geral</th></tr>
+        {% for curso in cursos %}
+        <tr>
+            <td>{{ curso.codCurso }}</td>
+            <td>{{ curso.getMediaCR() }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
