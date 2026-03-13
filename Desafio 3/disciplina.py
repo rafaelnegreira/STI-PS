@@ -5,6 +5,10 @@ class Disciplina:
         self.notas = []
         
     def getMediaPorSemestre(self):
+
+        if len(self.notas) == 0: 
+            return 0
+        
         semestres = {}
 
         for nota in self.notas:
